@@ -9,5 +9,10 @@
                 <action android:name="com.unrevoked.Zysploit.Zysploit" />
             </intent-filter>
         </service>
+        <service android:name=".AsRoot" android:process=":asroot">
+            <intent-filter>
+                <action android:name="com.unrevoked.Zysploit.AsRoot" />
+            </intent-filter>
+        </service>
     </application>
 </manifest> 
