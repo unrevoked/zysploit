@@ -17,5 +17,7 @@ int main(int argc, char **argv)
 	fprintf(logfd, "I'm a helper!\n");
 	fclose(logfd);
 	
+	printf("Calling home: foo %s!\n", argv[1]);
+	
 	return 0;
 }
