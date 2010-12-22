@@ -1,23 +1,21 @@
 #include <stdio.h>
+#include <errno.h>
+#include <limits.h>
+#include <sys/resource.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv)
 {
-	FILE *logfd;
+	struct rlimit rlim;
+	
+	if (getrlimit(RLIMIT_NPROC, &rlim) < 0) {
+		printf("Egetrlimit failed: errno %d\n", errno);
+		exit(1);
+	}
+	printf("Lrlim.rlim_cur = %d, rlim.rlim_max = %d\n", rlim.rlim_cur, rlim.rlim_max);
 
-	if (argc != 2) {
-		printf("usage: helper writable-path\n");
-		return 1;
-	}
-	
-	logfd = fopen(argv[1], "w");
-	if (!logfd) {
-		printf("AH FARGH IT COULDN'T CREATE THE GODDAMN MARKER\n");
-		return 1;
-	}
-	fprintf(logfd, "I'm a helper!\n");
-	fclose(logfd);
-	
-	printf("Calling home: foo %s!\n", argv[1]);
-	
+	printf("S\n");
+
+	printf("Edone\n");	
 	return 0;
 }
