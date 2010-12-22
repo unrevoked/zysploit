@@ -85,7 +85,32 @@ public class Zysploit extends IntentService {
 			reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
 			while ((s = reader.readLine()) != null)
 			{
-				Log.v("Zysploit", "Helper: "+s);
+				switch (s.charAt(0))
+				{
+				case 'L':
+					Log.v("Zysploit", "Helper: "+(s.substring(1)));
+					break;
+				case 'E':
+					Log.e("Zysploit", "Helper error: "+(s.substring(1)));
+					break;
+				case 'S':
+					android.content.ComponentName cn;
+					
+					Log.v("Zysploit", "Helper requests Zygote process spawn");
+					
+					cn = getApplicationContext()
+					       .startService(
+					         new Intent("com.unrevoked.Zysploit.AsRoot"));
+					if (cn == null)
+						Log.e("Zysploit", "Failed to start AsRoot service.");
+					else
+						Log.v("Zysploit", "Started service "+cn.toString()+".");
+					
+					break;
+				default:
+					Log.e("Zysploit", "Unknown helper string: "+s);
+					break;
+				}
 			}
 		} catch (Exception e) {
 			Log.e("Zysploit", "Unexpected IOException reading from helper.", e);
@@ -103,7 +128,6 @@ public class Zysploit extends IntentService {
 		if (unpack() < 0)
 		{
 			Log.e("Zysploit", "Failed to extract helper -- aborting.");
-			stopSelf();
 			return;
 		}
 		
