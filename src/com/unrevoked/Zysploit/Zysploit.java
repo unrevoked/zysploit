@@ -2,6 +2,7 @@ package com.unrevoked.Zysploit;
 
 import java.lang.*;
 import android.app.Service;
+import android.app.IntentService;
 import android.widget.Toast;
 import android.util.Log;
 import android.os.Looper;
@@ -15,8 +16,7 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 
-public class Zysploit extends Service implements Runnable {
-	private Thread me;
+public class Zysploit extends IntentService {
 	private final int EXTRACTBUF_SIZE = 1024;
 	
 	private void say(String s)
@@ -72,6 +72,8 @@ public class Zysploit extends Service implements Runnable {
 		BufferedReader reader;
 		String s;
 		
+		Log.v("Zysploit", "Starting helper.");
+		
 		try {
 			p = Runtime.getRuntime().exec(home+"/helper "+home+"/helper.log");
 		} catch (Exception e) {
@@ -91,14 +93,11 @@ public class Zysploit extends Service implements Runnable {
 		}
 		
 		Log.v("Zysploit", "Helper done.");
-		
 	}
 	
 	@Override
-	public void run()
+	protected void onHandleIntent(Intent i)
 	{
-		Looper.prepare();
-		
 		Log.v("Zysploit", "Inside main service thread.");
 		
 		if (unpack() < 0)
@@ -111,25 +110,33 @@ public class Zysploit extends Service implements Runnable {
 		runhelper();
 		
 		Log.v("Zysploit", "Main service thread done.");
-		stopSelf();
 	}
 	
 	@Override
 	public void onStart(Intent i, int startId)
 	{
+		super.onStart(i, startId);
+		
 		Log.v("Zysploit", "Started.");
-		
-		say("Outisde thread.");
-		
-		me = new Thread(this, "Zysploit thread");
-		me.start();
 	}
 	
 	@Override
 	public IBinder onBind(Intent i)
 	{
+		super.onBind(i);
+		
 		Log.v("Zysploit", "Bound.");
 		
 		return null;
+	}
+	
+	public Zysploit(String s)
+	{
+		super(s);
+	}
+	
+	public Zysploit()
+	{
+		super("");
 	}
 }
