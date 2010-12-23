@@ -75,7 +75,7 @@ public class Zysploit extends IntentService {
 		Log.v("Zysploit", "Starting helper.");
 		
 		try {
-			p = Runtime.getRuntime().exec(home+"/helper "+home+"/helper.log");
+			p = Runtime.getRuntime().exec(home+"/helper");
 		} catch (Exception e) {
 			Log.e("Zysploit", "Failed to exec helper.", e);
 			return;
