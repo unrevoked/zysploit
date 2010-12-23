@@ -52,8 +52,20 @@ int main(int argc, char **argv)
 	
 	/* Sooner or later, the other end will tell us to proceed. */
 	read(0, &i, 1);
+	printf("Lremote acknowledged... waiting for ActivityManager\n");
+
+	/* Sometimes ActivityManager waits to spawn a process even after
+	 * it's told us that it started the service.  We'll give it a second
+	 * to get its shit together.  Evade, don't solve, concurrency problems.
+	 *
+	 * (This could actually be 'solved' reliably by repeatedly walking
+	 * the process table looking for the one we want, but a second
+	 * really is an eternity.  Still, that wouldn't be blocking,
+	 * either...)
+	 */
+	sleep(1);
 	
-	printf("Lremote acknowledged\n");
+	printf("Lkilling off babbies\n");
 	
 	for (i = 0; i < nbabbies; i++) {
 		kill(babbies[i], 9);
