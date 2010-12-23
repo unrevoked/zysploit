@@ -1,4 +1,4 @@
-package com.unrevoked.Zysploit;
+package com.unrevoked.zysploit;
 
 import java.lang.*;
 import android.app.Service;
@@ -100,11 +100,13 @@ public class Zysploit extends IntentService {
 					
 					cn = getApplicationContext()
 					       .startService(
-					         new Intent("com.unrevoked.Zysploit.AsRoot"));
+					         new Intent("com.unrevoked.zysploit.AsRoot"));
 					if (cn == null)
 						Log.e("Zysploit", "Failed to start AsRoot service.");
 					else
 						Log.v("Zysploit", "Started service "+cn.toString()+".");
+					
+					p.getOutputStream().write('\n');	/* OK, you may proceed. */
 					
 					break;
 				default:

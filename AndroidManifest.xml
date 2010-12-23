@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-      package="com.unrevoked.Zysploit"
+      package="com.unrevoked.zysploit"
       android:versionCode="1"
       android:versionName="1.0">
     <application android:label="@string/app_name" android:icon="@drawable/icon">
         <service android:name=".Zysploit" android:process=":master">
             <intent-filter>
-                <action android:name="com.unrevoked.Zysploit.Zysploit" />
+                <action android:name="com.unrevoked.zysploit" />
             </intent-filter>
         </service>
         <service android:name=".AsRoot" android:process=":asroot">
             <intent-filter>
-                <action android:name="com.unrevoked.Zysploit.AsRoot" />
+                <action android:name="com.unrevoked.zysploit.AsRoot" />
             </intent-filter>
         </service>
     </application>

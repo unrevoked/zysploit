@@ -47,12 +47,14 @@ int main(int argc, char **argv)
 		if ((nbabbies % 500) == 0)
 			printf("L...%d...\n", nbabbies);
 	}
-	printf("Lcloned %d babbies\n", nbabbies);
+	printf("Lcloned %d babbies; waiting for remote\n", nbabbies);
 	printf("S\n");
 	
-	sleep(60);	/* XXX */
+	/* Sooner or later, the other end will tell us to proceed. */
+	read(0, &i, 1);
 	
-	printf("Ldone sleeping\n");
+	printf("Lremote acknowledged\n");
+	
 	for (i = 0; i < nbabbies; i++) {
 		kill(babbies[i], 9);
 	}

@@ -1,4 +1,4 @@
-package com.unrevoked.Zysploit;
+package com.unrevoked.zysploit;
 
 import java.lang.*;
 import android.app.Service;
@@ -61,6 +61,15 @@ public class AsRoot extends IntentService {
 			Log.e("Zysploit:AsRoot", "Unexpected IOException reading from helper.", e);
 			return;
 		}
+		
+		try {
+			Runtime.getRuntime().exec("setprop ro.kernel.qemu 1").waitFor();
+		} catch (Exception e) {
+			Log.e("Zysploit:AsRoot", "Failed to set kernel property.", e);
+			return;
+		}
+		
+		
 		
 		Log.v("Zysploit:AsRoot", "Helper done.");
 	}
