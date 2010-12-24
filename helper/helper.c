@@ -25,10 +25,20 @@ int main(int argc, char **argv)
 	setlinebuf(stdout);
 	
 	if (argc == 2 && !strcmp(argv[1], "root")) {
-		if (getuid() == 0)
-			printf("LI appear to be running as root.\n");
-		else
+		if (getuid() != 0)
+		{
 			printf("EI do not appear to be running as root: uid %d, euid %d\n", getuid(), geteuid());
+			return 1;
+		}
+
+		printf("LI appear to be running as root.\n");
+		mkdir("/data/data/com.unrevoked.zysploit/root");
+		system("mount -t ramfs none /data/data/com.unrevoked.zysploit/root");
+		chmod("/data/data/com.unrevoked.zysploit/root", 0755);
+		system("cat /system/bin/sh > /data/data/com.unrevoked.zysploit/root/su");
+		chmod("/data/data/com.unrevoked.zysploit/root/su", 06755);
+		printf("LThere should now be a /data/data/com.unrevoked.zysploit/root/su installed.\n");
+		
 		return 0;
 	}
 	

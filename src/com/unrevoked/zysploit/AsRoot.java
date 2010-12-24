@@ -62,15 +62,6 @@ public class AsRoot extends IntentService {
 			return;
 		}
 		
-		try {
-			Runtime.getRuntime().exec("setprop ro.kernel.qemu 1").waitFor();
-		} catch (Exception e) {
-			Log.e("Zysploit:AsRoot", "Failed to set kernel property.", e);
-			return;
-		}
-		
-		
-		
 		Log.v("Zysploit:AsRoot", "Helper done.");
 	}
 	
