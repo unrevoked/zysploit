@@ -75,7 +75,7 @@ int main(int argc, char **argv)
 	 * really is an eternity.  Still, that wouldn't be blocking,
 	 * either...)
 	 */
-	sleep(1);
+	sleep(10);
 	
 	printf("Lkilling off babbies\n");
 	

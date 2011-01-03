@@ -14,5 +14,10 @@
                 <action android:name="com.unrevoked.zysploit.AsRoot" />
             </intent-filter>
         </service>
+        <receiver android:name=".Receiver" android:process=":master">
+            <intent-filter>
+                <action android:name="com.unrevoked.zysploit" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest> 
