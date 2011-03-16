@@ -1,3 +1,10 @@
+To build:
+
 Step 1: 'android update project -p .'
-Step 2: ant debug && adb install -r /Users/joshua/android/zysploit/bin/zysploit-debug.apk
+Step 2: ant debug && adb install -r bin/zysploit-debug.apk
 Step 3: adb shell am startservice -a com.unrevoked.Zysploit.Zysploit
+
+(step 3 may change on devices that only have broadcast support)
+
+The helper is not built as part of the ant build process; make -C helper to
+rebuild it.

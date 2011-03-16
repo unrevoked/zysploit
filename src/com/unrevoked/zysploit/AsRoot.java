@@ -1,3 +1,24 @@
+/* AsRoot.java: helper bits running, theoretically, as root.
+ * Part of Zysploit, an exploit for unchecked setuid() in Android Zygote
+ * Copyright (C) 2011 Joshua Wise and the unrevoked Development Team
+ * 
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, version 3 of the License.
+ * 
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ * Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License along
+ * with this program, contained in the file LICENSE.  If not, see
+ * <http://www.gnu.org/licenses/>.
+ * 
+ * Additionally, this program may also be licensed by the unrevoked
+ * Development Team for other purposes.
+ */
+
 package com.unrevoked.zysploit;
 
 import java.lang.*;
